@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import Header from './Header';
+import CustomizeLaptopForm from './CustomizeLaptopForm';
+import CartView from './CartView';
 
 // Normalizes string as a slug - a string that is safe to use
 // in both URLs and html attributes
@@ -46,7 +49,7 @@ class App extends Component {
   render() {
     const features = Object.keys(this.props.features).map((feature, idx) => {
       const featureHash = feature + '-' + idx;
-      const options = this.props.features[feature].map(item => {
+      const options = this.props.features[feature].map(item => { //start here!!!!!!!!!!!!!!!!!!!!!
         const itemHash = slugify(JSON.stringify(item));
         return (
           <div key={itemHash} className="feature__item">
@@ -97,16 +100,14 @@ class App extends Component {
 
     return (
       <div className="App">
-        <header>
-          <h1>ELF Computing | Laptops</h1>
-        </header>
+        <Header/>
         <main>
           <form className="main__form">
-            <h2>Customize your laptop</h2>
+            <CustomizeLaptopForm/>
             {features}
           </form>
           <section className="main__summary">
-            <h2>Your cart</h2>
+            <CartView/>
             {summary}
             <div className="summary__total">
               <div className="summary__total__label">Total</div>
