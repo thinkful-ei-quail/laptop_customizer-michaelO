@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import Header from './Header';
-import CustomizeLaptopForm from './CustomizeLaptopForm';
+
 import CartView from './CartView';
+import Options from './Options';
+import FeaturesTest from './FeaturesTest';
+import Features from './Features';
+
 
 // Normalizes string as a slug - a string that is safe to use
 // in both URLs and html attributes
@@ -103,8 +107,8 @@ class App extends Component {
         <Header/>
         <main>
           <form className="main__form">
-            <CustomizeLaptopForm/>
-            {features}
+            <Features features={this.props.features} items={this.state.selected} onChange={this.updateFeature}/>
+            {/* {features} */}
           </form>
           <section className="main__summary">
             <CartView/>
@@ -113,6 +117,7 @@ class App extends Component {
               <div className="summary__total__label">Total</div>
               <div className="summary__total__value">
                 {USCurrencyFormat.format(total)}
+                {/* <FeaturesTest features={this.props.features} items={this.state.selected}/> */}
               </div>
             </div>
           </section>

@@ -6,13 +6,11 @@ const USCurrencyFormat = new Intl.NumberFormat('en-US', {
   currency: 'USD'
 });
 
-export default class CustomLaptopForm extends React.Component {
-
+export default class Features extends React.Component {
   render() {
-    
     const features = Object.keys(this.props.features).map((feature, idx) => {
       const featureHash = feature + '-' + idx;
-      const options = this.props.features[feature].map(item => {
+      const options = this.props.features[feature].map(item => { //start here!!!!!!!!!!!!!!!!!!!!!
         const itemHash = slugify(JSON.stringify(item));
         return (
           <div key={itemHash} className="feature__item">
@@ -21,8 +19,8 @@ export default class CustomLaptopForm extends React.Component {
               id={itemHash}
               className="feature__option"
               name={slugify(feature)}
-              checked={item.name === this.state.selected[feature].name}
-              onChange={e => this.updateFeature(feature, item)}
+              checked={item.name === this.props.items[feature].name}
+              onChange={() => this.props.onChange(feature, item)}
             />
             <label htmlFor={itemHash} className="feature__label">
               {item.name} ({USCurrencyFormat.format(item.cost)})
@@ -32,7 +30,6 @@ export default class CustomLaptopForm extends React.Component {
       });
 
       return (
-        
         <fieldset className="feature" key={featureHash}>
           <legend className="feature__name">
             <h3>{feature}</h3>
@@ -41,8 +38,7 @@ export default class CustomLaptopForm extends React.Component {
         </fieldset>
       );
     });
-    
-    return  
-    
+
+    return (<div><h2>Customize your laptop:</h2>{features}</div>)
   }
 }
