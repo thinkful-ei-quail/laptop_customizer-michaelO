@@ -107,7 +107,7 @@ class App extends Component {
         <Header/>
         <main>
           <form className="main__form">
-            <Features features={this.props.features} items={this.state.selected} onChange={this.updateFeature}/>
+            <Features features={this.props.features} options={this.state.selected} onChange={this.updateFeature}/>
             {/* {features} */}
           </form>
           <section className="main__summary">
