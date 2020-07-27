@@ -7,13 +7,6 @@ import CartView from './CartView';
 
 import './App.css';
 
-// This object will allow us to
-// easily convert numbers into US dollar values
-const USCurrencyFormat = new Intl.NumberFormat('en-US', {
-  style: 'currency',
-  currency: 'USD'
-});
-
 class App extends Component {
   state = {
     selected: {

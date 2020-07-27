@@ -1,4 +1,7 @@
 import React from 'react';
+
+// Normalizes string as a slug - a string that is safe to use
+// in both URLs and html attributes
 import slugify from 'slugify';
 import Options from './Options';
 
@@ -6,7 +9,7 @@ export default class CustomizeView extends React.Component {
   render() {
     const features = Object.keys(this.props.features).map((feature, idx) => {
       const featureHash = feature + '-' + idx;
-      const options = this.props.features[feature].map(item => { 
+      const options = this.props.features[feature].map(item => {
         const itemHash = slugify(JSON.stringify(item));
         return (<Options key={itemHash}
           item={item}
@@ -27,6 +30,6 @@ export default class CustomizeView extends React.Component {
       );
     });
 
-    return (<div><h2>Customize your laptop:</h2>{features}</div>)
+    return (<div><h2>Customize your laptop:</h2>{features}</div>);
   }
 }
