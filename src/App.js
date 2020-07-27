@@ -1,13 +1,9 @@
 import React, { Component } from 'react';
 import Header from './Header';
-import CartView from './CartView';
-import FeaturesTest from './FeaturesTest';
+import Test from './Test';
 import CustomizeView from './CustomizeView';
+import CartView from './CartView';
 
-
-// Normalizes string as a slug - a string that is safe to use
-// in both URLs and html attributes
-import slugify from 'slugify';
 
 import './App.css';
 
@@ -48,76 +44,18 @@ class App extends Component {
     });
   };
 
-  render() {
-    const features = Object.keys(this.props.features).map((feature, idx) => {
-      const featureHash = feature + '-' + idx;
-      const options = this.props.features[feature].map(item => { //start here!!!!!!!!!!!!!!!!!!!!!
-        const itemHash = slugify(JSON.stringify(item));
-        return (
-          <div key={itemHash} className="feature__item">
-            <input
-              type="radio"
-              id={itemHash}
-              className="feature__option"
-              name={slugify(feature)}
-              checked={item.name === this.state.selected[feature].name}
-              onChange={e => this.updateFeature(feature, item)}
-            />
-            <label htmlFor={itemHash} className="feature__label">
-              {item.name} ({USCurrencyFormat.format(item.cost)})
-            </label>
-          </div>
-        );
-      });
-
-      return (
-        <fieldset className="feature" key={featureHash}>
-          <legend className="feature__name">
-            <h3>{feature}</h3>
-          </legend>
-          {options}
-        </fieldset>
-      );
-    });
-
-    const summary = Object.keys(this.state.selected).map((feature, idx) => {
-      const featureHash = feature + '-' + idx;
-      const selectedOption = this.state.selected[feature];
-
-      return (
-        <div className="summary__option" key={featureHash}>
-          <div className="summary__option__label">{feature} </div>
-          <div className="summary__option__value">{selectedOption.name}</div>
-          <div className="summary__option__cost">
-            {USCurrencyFormat.format(selectedOption.cost)}
-          </div>
-        </div>
-      );
-    });
-
-    const total = Object.keys(this.state.selected).reduce(
-      (acc, curr) => acc + this.state.selected[curr].cost,
-      0
-    );
-
+  render() {      
     return (
       <div className="App">
         <Header/>
         <main>
           <form className="main__form">
-            <CustomizeView features={this.props.features} options={this.state.selected} onChange={this.updateFeature}/>
-            {/* {features} */}
+            <CustomizeView features={this.props.features}
+             options={this.state.selected}
+              onChange={this.updateFeature}/>            
           </form>
           <section className="main__summary">
-            <CartView/>
-            {summary}
-            <div className="summary__total">
-              <div className="summary__total__label">Total</div>
-              <div className="summary__total__value">
-                {USCurrencyFormat.format(total)}
-                {/* <FeaturesTest features={this.props.features} items={this.state.selected}/> */}
-              </div>
-            </div>
+            <CartView options={this.state.selected}/>            
           </section>
         </main>
       </div>
