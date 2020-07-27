@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import Header from './Header';
-
 import CartView from './CartView';
-import Options from './Options';
 import FeaturesTest from './FeaturesTest';
-import Features from './Features';
+import CustomizeView from './CustomizeView';
 
 
 // Normalizes string as a slug - a string that is safe to use
@@ -107,7 +105,7 @@ class App extends Component {
         <Header/>
         <main>
           <form className="main__form">
-            <Features features={this.props.features} options={this.state.selected} onChange={this.updateFeature}/>
+            <CustomizeView features={this.props.features} options={this.state.selected} onChange={this.updateFeature}/>
             {/* {features} */}
           </form>
           <section className="main__summary">
