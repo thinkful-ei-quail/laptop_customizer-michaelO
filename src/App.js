@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Header from './Header';
-import Test from './Test';
 import CustomizeView from './CustomizeView';
 import CartView from './CartView';
 
