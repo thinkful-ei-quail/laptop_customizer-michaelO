@@ -6,7 +6,7 @@ const USCurrencyFormat = new Intl.NumberFormat('en-US', {
   currency: 'USD'
 });
 
-export default class Options extends React.Component {
+export default class Option extends React.Component {
   render() {
     return (
       <div key={this.props.itemHash} className="feature__item">
