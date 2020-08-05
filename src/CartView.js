@@ -1,4 +1,5 @@
 import React from 'react';
+import CartSummary from './CartSummary';
 
 // This object will allow us to
 // easily convert numbers into US dollar values
@@ -9,20 +10,9 @@ const USCurrencyFormat = new Intl.NumberFormat('en-US', {
 
 export default class CartView extends React.Component{
   render(){
-    const summary = Object.keys(this.props.options).map((feature, idx) => {
-      const featureHash = feature + '-' + idx;
-      const selectedOption = this.props.options[feature];
-
-      return (
-        <div className="summary__option" key={featureHash}>
-          <div className="summary__option__label">{feature} </div>
-          <div className="summary__option__value">{selectedOption.name}</div>
-          <div className="summary__option__cost">
-            {USCurrencyFormat.format(selectedOption.cost)}
-          </div>
-        </div>
-      );
-    });
+    const summary = Object.keys(this.props.options).map((feature, idx) => 
+      <CartSummary key={idx} feature={feature} options={this.props.options} />
+    );
     
     const total = Object.keys(this.props.options).reduce(
       (acc, curr) => acc + this.props.options[curr].cost,
